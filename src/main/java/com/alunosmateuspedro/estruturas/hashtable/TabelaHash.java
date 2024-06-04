@@ -1,8 +1,5 @@
-package com.alunosmateuspedro.estruturas;
-
+package com.alunosmateuspedro.estruturas.hashtable;
 import java.lang.reflect.Array;
-
-import com.alunosmateuspedro.estruturas.ListaDuplamenteEncadeada;
 
 interface Dicionario<K, V> {
     void insere(K chave, V valor);
@@ -16,43 +13,13 @@ interface Dicionario<K, V> {
     boolean estaVazia();
 }
 
-class Entrada<K, V> {
-    private K chave;
-    private V valor;
-
-    public Entrada(K chave, V valor) {
-        this.chave = chave;
-        this.valor = valor;
-    }
-
-    public void setValor(V valor) {
-        this.valor = valor;
-    }
-
-    public void setChave(K chave) {
-        this.chave = chave;
-    }
-
-    public K getChave() {
-        return chave;
-    }
-
-    public V getValor() {
-        return valor;
-    }
-
-    @Override
-    public String toString() {
-        return "Entrada [chave=" + chave + ", valor=" + valor + "]";
-    }
-
-}
-
+ 
 public class TabelaHash<K extends Comparable<K>, V> implements Dicionario<K, V> {
 
     private int tamanho;
     private ListaDuplamenteEncadeada<Entrada<K, V>>[] tabela;
 
+    @SuppressWarnings("unchecked")
     public TabelaHash(int capacidade) {
 
         this.tabela = (ListaDuplamenteEncadeada<Entrada<K, V>>[]) Array.newInstance(ListaDuplamenteEncadeada.class,
@@ -80,8 +47,20 @@ public class TabelaHash<K extends Comparable<K>, V> implements Dicionario<K, V> 
 
     @Override
     public Entrada<K, V> busca(K chave) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'busca'");
+        int indice = hash(chave);
+        if(tabela[indice]==null){
+            return null;
+        }
+        
+        Nodo<Entrada<K,V>> atual = tabela[indice].primeiro;
+        while (atual!=null) {
+            if(atual.getElemento().getChave().compareTo(chave)==0){
+                //as chaves foram iguais
+                return atual.getElemento();
+            }
+            atual = atual.getProximo();
+        }
+        return null;
     }
 
     @Override

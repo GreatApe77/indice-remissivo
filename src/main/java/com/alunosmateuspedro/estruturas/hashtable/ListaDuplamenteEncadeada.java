@@ -1,10 +1,10 @@
-package com.alunosmateuspedro.estruturas;
+package com.alunosmateuspedro.estruturas.hashtable;
 
 public class ListaDuplamenteEncadeada<T> {
     
     private int tamanho;
-    private Nodo<T> primeiro;
-    private Nodo<T> ultimo;
+    protected Nodo<T> primeiro;
+    protected Nodo<T> ultimo;
 
     public ListaDuplamenteEncadeada(){
         this.tamanho= 0;
@@ -139,6 +139,7 @@ public class ListaDuplamenteEncadeada<T> {
         }
         return atual.getElemento();
     }
+   
     @Override
     public String toString() {
         

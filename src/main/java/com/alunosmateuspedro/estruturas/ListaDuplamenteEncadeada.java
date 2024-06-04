@@ -11,7 +11,9 @@ public class ListaDuplamenteEncadeada<T> {
         this.primeiro = null;
         this.ultimo = null;
     }
-
+    public int tamanho(){
+        return this.tamanho;
+    }
     public void adicionarComeco(T elemento){
         Nodo<T> novoNodo = new Nodo<T>(elemento);
         if(this.tamanho==0){

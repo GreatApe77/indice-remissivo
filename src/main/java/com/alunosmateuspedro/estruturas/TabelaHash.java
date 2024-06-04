@@ -1,4 +1,6 @@
 package com.alunosmateuspedro.estruturas;
+import java.lang.reflect.Array;
+
 import com.alunosmateuspedro.estruturas.ListaDuplamenteEncadeada;
 
 interface Dicionario<K,V> {
@@ -27,15 +29,37 @@ class Entrada<K,V>{
     public V getValor() {
         return valor;
     }
+    @Override
+    public String toString() {
+        return "Entrada [chave=" + chave + ", valor=" + valor + "]";
+    }
+    
 }
-public class TabelaHash<K,V> implements Dicionario<K,V> {
+public class TabelaHash<K extends Comparable<K>,V> implements Dicionario<K,V> {
     
     private int tamanho;
     private ListaDuplamenteEncadeada<Entrada<K,V>>[] tabela;
+
+    public TabelaHash(int capacidade){
+        
+        this.tabela = (ListaDuplamenteEncadeada<Entrada<K,V>>[]) Array.newInstance(ListaDuplamenteEncadeada.class,capacidade);
+        this.tamanho=0;
+    }
+    public TabelaHash(){
+        this(37);
+    }
     @Override
     public void insere(K chave, V valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insere'");
+        int indice = hash(chave);
+        Entrada<K,V> entrada = new Entrada<K,V>(chave, valor);
+        if(tabela[indice]==null){
+            ListaDuplamenteEncadeada<Entrada<K,V>> listaAuxiliar = new ListaDuplamenteEncadeada<Entrada<K,V>>();
+            listaAuxiliar.adicionarFinal(entrada);
+            tabela[indice] = listaAuxiliar;
+        }else{
+            tabela[indice].adicionarFinal(entrada);
+        }
+        this.tamanho++;
     }
     @Override
     public Entrada<K, V> busca(K chave) {
@@ -57,13 +81,30 @@ public class TabelaHash<K,V> implements Dicionario<K,V> {
     }
 
     public int hash(K chave){
-        return 0;
+        if(chave instanceof Integer){
+            return (Integer) chave %this.tabela.length;
+        }
+        throw new IllegalArgumentException("Chave Invalida");
     }
 
 
+    @Override
+    public String toString() {
+        int cap = 2 + tamanho() + (2 * (tamanho() - 1)); 
 
-    private boolean bucketValido(int bucket){
-        return 0<bucket && bucket<this.tabela.length;
-
+        StringBuilder s = new StringBuilder(cap);
+        s.append("[");
+        for (int i = 0; i < tamanho(); i++) {
+            if(i==tamanho()-1){
+                s.append(tabela[i].toString());
+            }else{
+                s.append(tabela[i].toString());
+                s.append(tabela[i].toString());
+                s.append(", ");
+            }
+        }
+        s.append("]");
+        return s.toString();
     }
+   
 }

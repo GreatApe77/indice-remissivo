@@ -1,5 +1,7 @@
 package com.alunosmateuspedro;
 
+import com.alunosmateuspedro.estruturas.TabelaHash;
+
 /**
  * Hello world!
  *
@@ -8,6 +10,8 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        TabelaHash<Integer,Integer> tab = new TabelaHash<>(37);
+        tab.insere(238576, 20);
+        System.out.println(tab);
     }
 }

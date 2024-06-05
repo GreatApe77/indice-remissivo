@@ -38,4 +38,26 @@ public class TestTabelaHash {
             Assert.assertTrue(entrada.getValor()==valores[i]);
         }
     }
+
+    @Test
+    public void deveDeletar(){
+        TabelaHash<Integer,Integer> tabela = new TabelaHash<Integer,Integer>(37);
+        Integer[] chaves = new Integer[100];
+        Integer[] valores = new Integer[100];
+        Random random = new Random();
+        for (int i = 0; i < 100; i++) {
+            chaves[i] = Math.abs(random.nextInt());
+            valores[i] = random.nextInt();
+            tabela.insere(chaves[i],valores[i]);
+        }
+        for (int i = 0; i < tabela.tamanho(); i++) {
+            Entrada<Integer,Integer> entrada = tabela.busca(chaves[i]);
+            Assert.assertTrue(entrada.getValor()==valores[i]);
+        }
+        for (int i = 0; i < valores.length; i++) {
+            tabela.remove(chaves[i]);
+            Assert.assertTrue(tabela.busca(chaves[i])==null);
+
+        }
+    }
 }

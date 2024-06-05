@@ -48,7 +48,7 @@ public class ArvoreBinariaBusca<T extends Comparable<T>> {
         }
         // SAO IGUAIS
         if (noArvore.getElemento().compareTo(elemento) == 0) {
-            return elemento;
+            return noArvore.getElemento();
         }
         if (elemento.compareTo(noArvore.getElemento()) < 0) {
             return busca(noArvore.esquerdo, elemento);

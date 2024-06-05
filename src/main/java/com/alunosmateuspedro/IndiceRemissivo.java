@@ -33,6 +33,20 @@ public class IndiceRemissivo {
             
         }
     }
+    public void buscaNoIndice(String argumentosDeBusca){
+        String[] argumentosDeBuscaEspacados = argumentosDeBusca.split(" ");
+        for (int i = 0; i < argumentosDeBuscaEspacados.length; i++) {
+            String palavraTeste = argumentosDeBuscaEspacados[i];
+            
+        }
+        /* for (int i = (int) 'a'; i < (int) 'z'; i++) {
+            ArvoreBinariaBusca<Ocorrencia> arvore = tabela.busca(i).getValor();
+            if(arvore!=null){
+                
+            }
+            
+        } */
+    }
     private void construirIndiceRemissivo(String texto){
         String[] textoSeparadoPorLinhas = texto.split("\n");
         for (int i = 0; i < textoSeparadoPorLinhas.length; i++) {
@@ -45,11 +59,12 @@ public class IndiceRemissivo {
                     ArvoreBinariaBusca<Ocorrencia> arvoreDaInicial = tabela.busca(codigoDoCaractere).getValor();
                     Ocorrencia novaOcorrencia = new Ocorrencia(palavra);
                     Ocorrencia buscada = arvoreDaInicial.busca(novaOcorrencia);
+                    int nLinha = i+1;
                     if(buscada==null){
-                        novaOcorrencia.adicionarNumeroDaLinha(i);
+                        novaOcorrencia.adicionarNumeroDaLinha(nLinha);
                         arvoreDaInicial.insere(novaOcorrencia);
                     }else{
-                        buscada.adicionarNumeroDaLinha(i);
+                        buscada.adicionarNumeroDaLinha(nLinha);
                     }
 
                     // if(arvoreDaInicial.busca(ocorrencia)==null){

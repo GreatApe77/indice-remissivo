@@ -13,5 +13,7 @@ public class App {
         tab.insere(237, 88);
         // System.out.println(tab);
         System.out.println(tab.busca(238576).getChave());
+        System.out.println(tab.remove(238576));
+        System.out.println(tab.busca(238576));
     }
 }

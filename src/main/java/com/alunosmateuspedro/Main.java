@@ -6,7 +6,7 @@ import com.alunosmateuspedro.estruturas.hashtable.*;
  * Hello world!
  *
  */
-public class App {
+public class Main {
     public static void main(String[] args) {
         TabelaHash<Integer, Integer> tab = new TabelaHash<>(37);
         tab.insere(238576, 20);

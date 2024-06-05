@@ -41,7 +41,7 @@ public class ArvoreBinariaBusca<T extends Comparable<T>> {
         }
         return noArvore;
     }
-
+    
     private T busca(TreeNode<T> noArvore, T elemento) {
         if (noArvore == null) {
             return null;
@@ -57,4 +57,16 @@ public class ArvoreBinariaBusca<T extends Comparable<T>> {
             return busca(noArvore.direito, elemento);
         }
     }
+    public void imprimirEmOrdem(){
+        imprimirEmOrdem(raiz);
+    }
+    private void imprimirEmOrdem(TreeNode<T> noArvore){
+        if(noArvore==null){
+            return;
+        }
+        this.imprimirEmOrdem(noArvore.esquerdo);
+        System.out.println(noArvore.getElemento().toString());
+        this.imprimirEmOrdem(noArvore.direito);
+    }
+    
 }

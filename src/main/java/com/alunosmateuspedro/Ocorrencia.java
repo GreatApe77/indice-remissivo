@@ -26,5 +26,9 @@ public class Ocorrencia implements Comparable<Ocorrencia> {
     public int compareTo(Ocorrencia ocorrencia) {
         return this.getPalavra().compareTo(ocorrencia.getPalavra());
     }
+    @Override
+    public String toString() {
+        return "Palavra: "+getPalavra()+linhas.toString();
+    }
 
 }

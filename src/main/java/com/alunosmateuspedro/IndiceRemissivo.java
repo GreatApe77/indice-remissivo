@@ -26,7 +26,10 @@ public class IndiceRemissivo {
     }
     public void imprimirFormatado(){
         for (int i = (int) 'a'; i < (int) 'z'; i++) {
-            
+            ArvoreBinariaBusca<Ocorrencia> arvore = tabela.busca(i).getValor();
+            if(arvore!=null){
+                arvore.imprimirEmOrdem();
+            }
             
         }
     }

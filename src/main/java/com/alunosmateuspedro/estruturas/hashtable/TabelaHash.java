@@ -65,8 +65,34 @@ public class TabelaHash<K extends Comparable<K>, V> implements Dicionario<K, V> 
 
     @Override
     public Entrada<K, V> remove(K chave) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'remove'");
+        int indice = hash(chave);
+        if(tabela[indice]==null){
+            return null;
+        }
+        ListaDuplamenteEncadeada<Entrada<K,V>> lista = tabela[indice];
+        Nodo<Entrada<K,V>> atual = lista.primeiro;
+        Entrada<K,V> removido = null;
+        while (atual!=null) {
+            if(atual.getElemento().getChave().compareTo(chave)==0){
+                if(atual==lista.primeiro){
+                    removido = atual.getElemento();
+                    lista.removerComeco();
+                    return removido;
+                }
+                if(atual==lista.ultimo){
+                    removido = atual.getElemento();
+                    lista.removerFinal();
+                    return removido;
+                }
+                removido = atual.getElemento();
+                atual.getAnterior().setProximo(atual.getProximo());
+                atual.getProximo().setAnterior(atual.getAnterior());
+                lista.tamanho--;
+                return removido;
+            }
+            atual = atual.getProximo();
+        }
+        return removido;
     }
 
     @Override

@@ -2,7 +2,7 @@ package com.alunosmateuspedro.estruturas.hashtable;
 
 public class ListaDuplamenteEncadeada<T> {
     
-    private int tamanho;
+    protected int tamanho;
     protected Nodo<T> primeiro;
     protected Nodo<T> ultimo;
 

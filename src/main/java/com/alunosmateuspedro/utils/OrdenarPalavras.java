@@ -1,6 +1,5 @@
 package com.alunosmateuspedro.utils;
 
-import java.util.Arrays;
 
 public class OrdenarPalavras {
      public static void ordenarPalavras(String[] palavras) {

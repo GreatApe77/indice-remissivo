@@ -45,7 +45,7 @@ public class Main {
         Cli.imprimirTitulo();
         Cli.imprimeMenu();
         System.out.println();
-        System.out.print("Digite sua opção :");
+        System.out.println("Digite sua opção :");
         opcao = scanner.nextInt();
         switch (opcao) {
             case 1:
@@ -54,13 +54,19 @@ public class Main {
                 System.out.println("<><><><><><><><><><><><><><><>");
                 System.out.println(output1);
                 System.out.println("<><><><><><><><><><><><><><><>");
+                GeradorDeOutput.gerarOutput(output1);
                 main(args);
                 
                 break;
             case 2:
+                System.out.println("Digite os argumentos abaixo (SEPARADOS POR ESPAÇO!):");
+                scanner.nextLine();
                 String argumentosBuscaDigitados = scanner.nextLine();
                 String output2 = indiceRemissivo.buscaNoIndice(argumentosBuscaDigitados);
+                GeradorDeOutput.gerarOutput(output2);
+                System.out.println("<><><><><><><><><><><><><><><>");
                 System.out.println(output2);
+                System.out.println("<><><><><><><><><><><><><><><>");
                 main(args);
                 break;
             case 0:

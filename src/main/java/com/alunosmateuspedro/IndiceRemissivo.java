@@ -23,7 +23,7 @@ public class IndiceRemissivo {
         return textoOriginal;
     }
     public static String[] sanitizarTexto(String texto){
-        return texto.toLowerCase().strip().split(" ");
+        return texto.toLowerCase().replaceAll(",", "").strip().split(" ");
     }
     public void imprimirFormatado(){
         for (int i = (int) 'a'; i < (int) 'z'; i++) {

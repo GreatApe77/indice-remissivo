@@ -51,3 +51,11 @@ buildNumber.properties
 .project
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
+
+#ARQUIVOS DE ENTRADA DE DADOS
+texto.txt
+argumentos-busca.txt
+
+
+#SAIDA do indice remissivo
+indice-remissivo.txt

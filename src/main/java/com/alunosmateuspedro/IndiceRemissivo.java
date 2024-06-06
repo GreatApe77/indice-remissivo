@@ -34,7 +34,8 @@ public class IndiceRemissivo {
             
         }
     }
-    public void buscaNoIndice(String argumentosDeBusca){
+    public String buscaNoIndice(String argumentosDeBusca){
+        StringBuilder s = new StringBuilder();
         String[] argumentosDeBuscaEspacados = argumentosDeBusca.strip().toLowerCase().split(" ");
         OrdenarPalavras.ordenarPalavras(argumentosDeBuscaEspacados);
         for (String argumento : argumentosDeBuscaEspacados) {
@@ -43,8 +44,15 @@ public class IndiceRemissivo {
             Ocorrencia ocorrenciaTeste = new Ocorrencia(argumento);
             Ocorrencia buscado = arvoreDoCaractere.busca(ocorrenciaTeste);
             if(buscado!=null){
-                System.out.println(buscado);
+                s.append(buscado.toString()+"\n");
             }
+        }
+
+        String conteudo = s.toString();
+        if(conteudo.length()==0){
+            return "NENHUM ARGUMENTO ENCONTRADO! ☹️";
+        }else{
+            return conteudo;
         }
         /* for (int i = (int) 'a'; i < (int) 'z'; i++) {
             ArvoreBinariaBusca<Ocorrencia> arvore = tabela.busca(i).getValor();
@@ -55,6 +63,9 @@ public class IndiceRemissivo {
         } */
     }
     private void construirIndiceRemissivo(String texto){
+        if (texto.length()==0) {
+            throw new IllegalArgumentException();
+        }
         String[] textoSeparadoPorLinhas = texto.split("\n");
         for (int i = 0; i < textoSeparadoPorLinhas.length; i++) {
             String[] linhaEmPalavras = sanitizarTexto(textoSeparadoPorLinhas[i]);

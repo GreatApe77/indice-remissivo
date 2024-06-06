@@ -1,6 +1,7 @@
 package com.alunosmateuspedro;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 /**
  * Hello world!
@@ -25,14 +26,52 @@ public class Main {
         // TADs são definidos indiretamente pelas operações e usos, e propriedades
         // destas operações e usos: e.g. o custo computacional e o espaço que pode
         // representar e ocupa na memória.";
-        //String textoTeste = "Bom dia amigos da rede globo \n hoje vou dormir na rede e jogar muito futebol \n a terra eh redonda \n amigos \n amigos \n bola";
+        // String textoTeste = "Bom dia amigos da rede globo \n hoje vou dormir na rede
+        // e jogar muito futebol \n a terra eh redonda \n amigos \n amigos \n bola";
         // String textoTeste = "oi \n oi \n oi \n oi";
-        IndiceRemissivo indiceRemissivo = new IndiceRemissivo(LeitorDeArquivos.lerTexto());
+        // IndiceRemissivo indiceRemissivo = new
+        // IndiceRemissivo(LeitorDeArquivos.lerTexto());
 
         // indiceRemissivo.imprimirFormatado();
-        String indiceRemissivoOutput = indiceRemissivo.buscaNoIndice(LeitorDeArquivos.lerArgumentos());
+        // String indiceRemissivoOutput =
+        // indiceRemissivo.buscaNoIndice(LeitorDeArquivos.lerArgumentos());
         // System.out.println(LeitorDeArquivos.lerTexto());
-        System.out.println(indiceRemissivoOutput);
-        GeradorDeOutput.gerarOutput(indiceRemissivoOutput);
+        // System.out.println(indiceRemissivoOutput);
+        // GeradorDeOutput.gerarOutput(indiceRemissivoOutput);
+        Scanner scanner = new Scanner(System.in);
+
+        int opcao = -1;
+        IndiceRemissivo indiceRemissivo = new IndiceRemissivo(LeitorDeArquivos.lerTexto());
+        Cli.imprimirTitulo();
+        Cli.imprimeMenu();
+        System.out.println();
+        System.out.print("Digite sua opção :");
+        opcao = scanner.nextInt();
+        switch (opcao) {
+            case 1:
+                String argumentosBusca = LeitorDeArquivos.lerArgumentos();
+                String output1 = indiceRemissivo.buscaNoIndice(argumentosBusca);
+                System.out.println("<><><><><><><><><><><><><><><>");
+                System.out.println(output1);
+                System.out.println("<><><><><><><><><><><><><><><>");
+                main(args);
+                
+                break;
+            case 2:
+                String argumentosBuscaDigitados = scanner.nextLine();
+                String output2 = indiceRemissivo.buscaNoIndice(argumentosBuscaDigitados);
+                System.out.println(output2);
+                main(args);
+                break;
+            case 0:
+                System.out.println("SAINDO...");
+                break;
+
+            default:
+                System.out.println("OPÇÃO INVÁLIDA!");
+                main(args);
+                break;
+        }
+        scanner.close();
     }
 }

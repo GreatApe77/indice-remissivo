@@ -38,9 +38,5 @@ public class OrdenarPalavras {
           return i;
      }
 
-     public static void main(String[] args) {
-          String[] palavras = { "Mateus", "Ana", "Zod", "Bruce", "Yuri", "Matheus", "Pedro" };
-          ordenarPalavras(palavras);
-          System.out.println(Arrays.toString(palavras));
-     }
+     
 }

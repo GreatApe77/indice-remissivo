@@ -28,7 +28,7 @@ public class Ocorrencia implements Comparable<Ocorrencia> {
     }
     @Override
     public String toString() {
-        return "Palavra: "+getPalavra()+linhas.toString();
+        return getPalavra()+linhas.toString();
     }
 
 }

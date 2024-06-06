@@ -2,6 +2,7 @@ package com.alunosmateuspedro;
 
 import com.alunosmateuspedro.estruturas.arvorebinariabusca.ArvoreBinariaBusca;
 import com.alunosmateuspedro.estruturas.hashtable.TabelaHash;
+import com.alunosmateuspedro.utils.OrdenarPalavras;
 
 public class IndiceRemissivo {
     private String textoOriginal;
@@ -34,10 +35,16 @@ public class IndiceRemissivo {
         }
     }
     public void buscaNoIndice(String argumentosDeBusca){
-        String[] argumentosDeBuscaEspacados = argumentosDeBusca.split(" ");
-        for (int i = 0; i < argumentosDeBuscaEspacados.length; i++) {
-            String palavraTeste = argumentosDeBuscaEspacados[i];
-            
+        String[] argumentosDeBuscaEspacados = argumentosDeBusca.strip().toLowerCase().split(" ");
+        OrdenarPalavras.ordenarPalavras(argumentosDeBuscaEspacados);
+        for (String argumento : argumentosDeBuscaEspacados) {
+            int codigoDoCaractere = argumento.charAt(0);
+            ArvoreBinariaBusca<Ocorrencia> arvoreDoCaractere = tabela.busca(codigoDoCaractere).getValor();
+            Ocorrencia ocorrenciaTeste = new Ocorrencia(argumento);
+            Ocorrencia buscado = arvoreDoCaractere.busca(ocorrenciaTeste);
+            if(buscado!=null){
+                System.out.println(buscado);
+            }
         }
         /* for (int i = (int) 'a'; i < (int) 'z'; i++) {
             ArvoreBinariaBusca<Ocorrencia> arvore = tabela.busca(i).getValor();
@@ -64,7 +71,10 @@ public class IndiceRemissivo {
                         novaOcorrencia.adicionarNumeroDaLinha(nLinha);
                         arvoreDaInicial.insere(novaOcorrencia);
                     }else{
-                        buscada.adicionarNumeroDaLinha(nLinha);
+                        if(buscada.getLinhas().ultimo.getElemento()!=nLinha){
+                            buscada.adicionarNumeroDaLinha(nLinha);
+                        }
+                        
                     }
 
                     // if(arvoreDaInicial.busca(ocorrencia)==null){
